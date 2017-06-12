@@ -1,4 +1,4 @@
-# shopping-mall-web
-shopping mall project web application
+# oneshop
+一个在线商城项目
 
  编码中...
