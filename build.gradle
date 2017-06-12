@@ -3,9 +3,9 @@ buildscript {
 		springBootVersion = '1.5.4.RELEASE'
 	}
 	repositories {
-		mavenCentral()
-        //maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        //jcenter()
+		//mavenCentral()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -21,9 +21,9 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
-    //maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    //jcenter()
+	//mavenCentral()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    jcenter()
 }
 
 configurations {
