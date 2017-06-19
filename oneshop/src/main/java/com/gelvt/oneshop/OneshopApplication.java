@@ -1,4 +1,4 @@
-package com.gelvt;
+package com.gelvt.oneshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
