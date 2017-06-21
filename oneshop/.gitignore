@@ -26,3 +26,6 @@ nbdist/
 
 out/
 src/main/resources/application-dev.properties
+
+# log
+*.log
