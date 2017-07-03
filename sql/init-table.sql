@@ -1,6 +1,6 @@
 --
 -- desc：oneshop(standalone version)数据库表结构初始化脚本
--- Author:elvin
+-- Author: Elvin Zeng
 -- Date: 2017-06-20
 --
 
