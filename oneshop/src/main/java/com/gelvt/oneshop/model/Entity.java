@@ -6,7 +6,7 @@ package com.gelvt.oneshop.model;
 import java.io.Serializable;
 
 /**
- * Mapper公共基接口
+ * 模型的抽象
  * @author: Elvin Zeng
  * @date: 17-7-3
  */
