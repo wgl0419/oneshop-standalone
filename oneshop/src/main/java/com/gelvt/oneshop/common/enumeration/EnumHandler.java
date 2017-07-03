@@ -13,7 +13,7 @@ import org.apache.ibatis.type.JdbcType;
  * @author: Elvin Zeng
  * @date: 17-7-4.
  */
-public class EnumHandler<E extends Enum<E> & Enumeration<T>, T>
+public class EnumHandler<E extends Enum<E> & TypedEnum<T>, T>
         extends BaseTypeHandler<E> {
     private Class<E> type;
 

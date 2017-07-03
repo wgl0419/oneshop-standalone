@@ -6,7 +6,7 @@ package com.gelvt.oneshop.common.enumeration;
  * @author: Elvin Zeng
  * @date: 17-7-4.
  */
-public interface Enumeration<T> {
+public interface TypedEnum<T> {
     /**
      * @return 枚举对应的值
      */

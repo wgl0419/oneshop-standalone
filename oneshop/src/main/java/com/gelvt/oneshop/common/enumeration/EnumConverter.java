@@ -16,7 +16,7 @@ public class EnumConverter {
      * @param <T> 枚举值的类型
      * @return 枚举。如果转换失败则返回null。
      */
-    public static <E extends Enum<E> & Enumeration<T>, T> E ParseEnum(Class<E> type, String value){
+    public static <E extends Enum<E> & TypedEnum<T>, T> E ParseEnum(Class<E> type, String value){
         EnumSet<E> set = EnumSet.allOf(type);
         if (set == null || set.size() <= 0) {
             return null;

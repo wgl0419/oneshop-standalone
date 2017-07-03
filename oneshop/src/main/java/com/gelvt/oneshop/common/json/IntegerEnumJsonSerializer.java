@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.gelvt.oneshop.common.enumeration.Enumeration;
+import com.gelvt.oneshop.common.enumeration.TypedEnum;
 
 
 /**
@@ -15,7 +15,7 @@ import com.gelvt.oneshop.common.enumeration.Enumeration;
  * @param <E>
  * @author links
  */
-public class IntegerEnumJsonSerializer<E extends Enum<E> & Enumeration<Integer>> extends JsonSerializer<E> {
+public class IntegerEnumJsonSerializer<E extends Enum<E> & TypedEnum<Integer>> extends JsonSerializer<E> {
 
     @Override
     public void serialize(E value, JsonGenerator gen, SerializerProvider serializerProvider)
