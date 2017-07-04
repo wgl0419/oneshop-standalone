@@ -4,3 +4,7 @@ jdk:
   - oraclejdk8
 
 script: ./gradlew assemble
+
+cache:
+  directories:
+    - $HOME/.gradle
