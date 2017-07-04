@@ -25,5 +25,5 @@ public interface PageHelperBasedListableMapper<T extends Entity>
      * @param rowBounds 记录的区间
 	 * @return 搜索到的结果
 	 */
-	List<T> search(SearchKey<T> searchKey, RowBounds rowBounds);
+	List<T> list(SearchKey<T> searchKey, RowBounds rowBounds);
 }

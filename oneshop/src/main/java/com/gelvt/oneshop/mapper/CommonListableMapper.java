@@ -24,5 +24,5 @@ public interface CommonListableMapper<T extends Entity>
      * @param param 查询参数
      * @return 结果集
      */
-    List<T> query(@Param("param") QueryParameter<T> param);
+    List<T> list(@Param("param") QueryParameter<T> param);
 }
