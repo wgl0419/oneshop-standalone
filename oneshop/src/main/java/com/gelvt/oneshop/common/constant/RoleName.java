@@ -15,7 +15,11 @@ public enum RoleName implements TypedEnum<String> {
     /**
      * 超级用户
      */
-    ROOT("role_root")
+    ROOT("role_root"),
+    /**
+     * 消费者
+     */
+    COMSUMER("role_comsumer")
     ;
 
     private String value;

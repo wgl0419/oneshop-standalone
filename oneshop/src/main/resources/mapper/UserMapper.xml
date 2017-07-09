@@ -133,12 +133,12 @@
         ]]>
     </delete>
     
-    <insert id="addRole" useGeneratedKeys="true"  parameterType="Long">
+    <insert id="saveRoleRelation" useGeneratedKeys="true"  parameterType="Long">
         INSERT INTO `tb_user_role`(`userId`, `roleId`)
         VALUES (#{userId}, #{roleId})
     </insert>
     
-    <delete id="removeRole" parameterType="Long">
+    <delete id="removeRoleRelation" parameterType="Long">
         DELETE FROM `tb_user_role` WHERE `userId`=#{userId} AND `roleId`=#{roleId} 
     </delete>
 </mapper> 

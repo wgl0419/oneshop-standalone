@@ -27,7 +27,7 @@ public interface UserMapper extends PageHelperBasedListableMapper<User>{
      * @param userId 用户id
      * @param roleId 角色id
      */
-    void addRole(@Param("userId") Long userId
+    void saveRoleRelation(@Param("userId") Long userId
             , @Param("roleId") Long roleId);
     
     /**
@@ -35,6 +35,6 @@ public interface UserMapper extends PageHelperBasedListableMapper<User>{
      * @param userId 用户id
      * @param roleId 角色id
      */
-    void removeRole(@Param("userId") Long userId
+    void removeRoleRelation(@Param("userId") Long userId
             , @Param("roleId") Long roleId);
 }
