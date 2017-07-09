@@ -18,7 +18,7 @@ public class User implements Entity{
 	/**
 	 * 用户Id
 	 */
-	private Long Id;
+	private Long id;
 	/**
 	 * 用户名
 	 */
@@ -42,15 +42,15 @@ public class User implements Entity{
 	/**
 	 * 用户帐号是否已经被禁用
 	 */
-	private Boolean isDisabled;
+	private Boolean disabled;
 	/**
 	 * 用户绑定的邮箱是否验证通过
 	 */
-	private Boolean isEmailVerified;
+	private Boolean emailVerified;
 	/**
      * 用户绑定的手机号是否验证通过
      */
-    private Boolean isMobileNoVerified;
+    private Boolean mobileNoVerified;
 	/**
 	 * 用户注册时间
 	 */
@@ -74,7 +74,7 @@ public class User implements Entity{
 	 * @return the id
 	 */
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class User implements Entity{
 	 *            the id to set
 	 */
 	public void setId(Long id) {
-		Id = id;
+		id = id;
 	}
 
 	public String getUsername() {
@@ -125,28 +125,28 @@ public class User implements Entity{
 		this.salt = salt;
 	}
 
-	public Boolean getDisabled() {
-		return isDisabled;
+	public Boolean isDisabled() {
+		return disabled;
 	}
 
 	public void setDisabled(Boolean disabled) {
-		isDisabled = disabled;
+		disabled = disabled;
 	}
 
-	public Boolean getEmailVerified() {
-		return isEmailVerified;
+	public Boolean isEmailVerified() {
+		return emailVerified;
 	}
 
 	public void setEmailVerified(Boolean emailVerified) {
-		isEmailVerified = emailVerified;
+		emailVerified = emailVerified;
 	}
 
-	public Boolean getMobileNoVerified() {
-		return isMobileNoVerified;
+	public Boolean isMobileNoVerified() {
+		return mobileNoVerified;
 	}
 
 	public void setMobileNoVerified(Boolean mobileNoVerified) {
-		isMobileNoVerified = mobileNoVerified;
+		mobileNoVerified = mobileNoVerified;
 	}
 
 	public Date getCreateTime() {
