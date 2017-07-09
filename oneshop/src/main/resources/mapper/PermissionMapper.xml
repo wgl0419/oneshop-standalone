@@ -5,12 +5,12 @@
 <mapper namespace="com.gelvt.oneshop.mapper.PermissionMapper">
 
     <select id="get" parameterType="Long"
-            resultType="com.gelvt.oneshop.model.Permission">
+            resultType="Permission">
         SELECT * FROM `tb_permission`
         WHERE id=#{id}
     </select>
     
-    <select id="list" resultType="com.gelvt.oneshop.model.Permission">
+    <select id="list" resultType="Permission">
         SELECT * FROM `tb_permission`
     </select>
     
