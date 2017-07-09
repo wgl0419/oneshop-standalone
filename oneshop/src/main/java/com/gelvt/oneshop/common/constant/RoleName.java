@@ -11,7 +11,7 @@ import com.gelvt.oneshop.common.json.StringEnumJsonSerializer;
  * @date: 17-7-6.
  */
 @JsonSerialize(using=StringEnumJsonSerializer.class)
-public enum RoleNameEnum implements TypedEnum<String> {
+public enum RoleName implements TypedEnum<String> {
     /**
      * 超级用户
      */
@@ -20,7 +20,7 @@ public enum RoleNameEnum implements TypedEnum<String> {
 
     private String value;
 
-    RoleNameEnum(String value){
+    RoleName(String value){
         this.value = value;
     }
 

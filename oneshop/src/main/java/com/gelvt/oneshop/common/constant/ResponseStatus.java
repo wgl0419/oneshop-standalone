@@ -12,7 +12,7 @@ import com.gelvt.oneshop.common.json.IntegerEnumJsonSerializer;
  * @date: 17-7-6.
  */
 @JsonSerialize(using=IntegerEnumJsonSerializer.class)
-public enum ResponseStatusEnum implements TypedEnum<Integer> {
+public enum ResponseStatus implements TypedEnum<Integer> {
     /**
      * 成功。
      */
@@ -33,7 +33,7 @@ public enum ResponseStatusEnum implements TypedEnum<Integer> {
 
     private Integer value;
 
-    ResponseStatusEnum(Integer value){
+    ResponseStatus(Integer value){
         this.value = value;
     }
 
