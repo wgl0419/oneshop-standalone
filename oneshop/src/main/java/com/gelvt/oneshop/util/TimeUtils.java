@@ -13,7 +13,7 @@ import java.util.Date;
  * @author: Elvin Zeng
  * @date: 17-7-3
  */
-public class TimeUtil {
+public class TimeUtils {
     
     /**
      * 得到n天前的时间
