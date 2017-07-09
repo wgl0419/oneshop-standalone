@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gelvt.oneshop.mapper.RoleMapper">
+
+    <resultMap id="roleResultMap" type="com.gelvt.oneshop.model.Role">
+        <id property="id" column="r_id"/>  
+        <result property="name" column="r_name"/>  
+        <result property="remark" column="r_remark"/>  
+	    <collection property="permissions" ofType="com.gelvt.oneshop.model.Permission">
+	        <id property="id" column="p_id"/>  
+	        <result property="name" column="p_name"/>  
+	        <result property="remark" column="p_remark"/>
+	    </collection>  
+    </resultMap>  
+
+    <select id="get" parameterType="Long" resultMap="roleResultMap">
+        SELECT
+            r.id AS r_id,
+            r.`name` AS r_name,
+            r.remark AS r_remark,
+            p.id AS p_id,
+            p.`name` AS p_name,
+            p.remark AS p_remark
+        FROM
+            `tb_role` AS r
+        LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+        LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+        WHERE r.id=#{id}
+    </select>
+    
+    <select id="getByName" parameterType="string" resultMap="roleResultMap">
+        SELECT
+            r.id AS r_id,
+            r.`name` AS r_name,
+            r.remark AS r_remark,
+            p.id AS p_id,
+            p.`name` AS p_name,
+            p.remark AS p_remark
+        FROM
+            `tb_role` AS r
+        LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+        LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+        WHERE r.`name` = #{name}
+    </select>
+    
+    <select id="list" resultMap="roleResultMap">
+        SELECT
+            r.id AS r_id,
+            r.`name` AS r_name,
+            r.remark AS r_remark,
+            p.id AS p_id,
+            p.`name` AS p_name,
+            p.remark AS p_remark
+        FROM
+            `tb_role` AS r
+        LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+        LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+    </select>
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" 
+        parameterType="com.gelvt.oneshop.model.Role">
+        INSERT INTO `tb_role`(`name`, `remark`)
+        VALUES (#{name}, #{remark})
+    </insert>
+    
+    <insert id="addPermissionRelation" useGeneratedKeys="true"  parameterType="Long">
+        INSERT INTO `tb_role_permission`(`roleId`, `permissionId`)
+        VALUES (#{roleId}, #{permissionId})
+    </insert>
+    
+    <delete id="removePermissionRelation" parameterType="Long">
+        DELETE FROM `tb_role_permission` WHERE `roleId`=#{roleId} AND `permissionId`=#{permissionId}
+    </delete>
+    
+    <update id="update"  parameterType="com.gelvt.oneshop.model.Role">
+        UPDATE `tb_role`
+        <set>
+            <if test="name != null">`name`=#{name},</if>
+            <if test="remark != null">`remark`=#{remark},</if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+    
+    <delete id="remove" parameterType="Long">
+        DELETE FROM `tb_role` WHERE  `id` = #{id}
+    </delete>
+</mapper> 

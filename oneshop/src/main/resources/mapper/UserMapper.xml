@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gelvt.oneshop.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="com.gelvt.oneshop.model.User">  
+        <id property="id" column="id"/>  
+		<result property="email" column="email"/>  
+		<result property="isDisabled" column="is_disabled"/>
+		<result property="isEmailVerified" column="is_email_verified"/>
+        <result property="isMobileNoVerified" column="is_mobile_no_verified"/>
+        <result property="mobileNo" column="mobile_no"/>
+        <result property="password" column="passwd"/>
+        <result property="createTime" column="gmt_created"/>
+        <result property="salt" column="salt"/>  
+        <result property="updateTime" column="gmt_modified"/>
+        <result property="username" column="username"/>  
+        <result property="regIp" column="reg_ip"/>
+        
+		<collection property="roles" ofType="com.gelvt.oneshop.model.Role" 
+		  fetchType="eager">  
+			<id property="id" column="r_id"/>  
+			<result property="name" column="r_name"/>  
+			<result property="remark" column="r_remark"/>
+			<!-- 再在role中关联role和permission -->  
+			<collection property="permissions" ofType="com.gelvt.oneshop.model.Permission"
+			 fetchType="eager">  
+				<id property="id" column="p_id"/>  
+				<result property="name" column="p_name"/>  
+				<result property="remark" column="p_remark"/>
+			</collection>  
+		</collection>  
+    </resultMap>  
+
+
+	<select id="get" parameterType="int" resultMap="userResultMap">
+	   <![CDATA[  
+	        SELECT
+			    u.*, r.id AS r_id,
+			    r.`name` AS r_name,
+			    r.remark AS r_remark,
+			    p.id AS p_id,
+			    p.`name` AS p_name,
+			    p.remark AS p_remark
+			FROM
+			    `tb_user` AS u
+			LEFT JOIN `tb_user_role` AS ur ON u.id = ur.user_id
+			LEFT JOIN `tb_role` AS r ON ur.role_id = r.id
+			LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+			LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+	        WHERE id=#{id} AND `is_deleted` <> 1
+        ]]>
+    </select>
+    
+    <select id="list" resultMap="userResultMap">
+        <![CDATA[ 
+	        SELECT
+	            u.*, r.id AS r_id,
+	            r.`name` AS r_name,
+	            r.remark AS r_remark,
+	            p.id AS p_id,
+	            p.`name` AS p_name,
+	            p.remark AS p_remark
+	        FROM
+	            `tb_user` AS u
+	        LEFT JOIN `tb_user_role` AS ur ON u.id = ur.user_id
+	        LEFT JOIN `tb_role` AS r ON ur.role_id = r.id
+	        LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+	        LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+	        WHERE `is_deleted` <> 1
+        ]]>
+    </select>
+    
+    <select id="getByLoginName" parameterType="string" resultMap="userResultMap">
+        <![CDATA[ 
+	        SELECT
+	            u.*, r.id AS r_id,
+	            r.`name` AS r_name,
+	            r.remark AS r_remark,
+	            p.id AS p_id,
+	            p.`name` AS p_name,
+	            p.remark AS p_remark
+	        FROM
+	            `tb_user` AS u
+	        LEFT JOIN `tb_user_role` AS ur ON u.id = ur.user_id
+	        LEFT JOIN `tb_role` AS r ON ur.role_id = r.id
+	        LEFT JOIN `tb_role_permission` AS rp ON rp.role_id = r.id
+	        LEFT JOIN `tb_permission` p ON p.id = rp.permission_id
+	        WHERE `username` = #{loginName}
+	            OR `email` = #{loginName} OR `mobileNo` = #{loginName}
+	            AND `is_deleted` <> 1
+        ]]>
+    </select>
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" 
+        parameterType="com.gelvt.oneshop.model.User">
+        <![CDATA[
+	        INSERT INTO `tb_user`(`email`, `is_deleted`
+	            , `is_email_verified`, `is_mobile_no_verified`
+	            , `mobile_no`, `passwd`
+	            , `salt`, `username`, `reg_ip`)
+	        VALUES (#{email}, 0
+	            , #{isEmailVerified}, #{isMobileNoVerified}
+	            , #{mobileNo}, #{password}
+	            , #{salt}, #{username}, #{regIp})
+        ]]>
+    </insert>
+    
+    <update id="update"  parameterType="com.gelvt.oneshop.model.User">
+        <![CDATA[
+	        UPDATE `tb_user`
+	        <set>
+	            <if test="email != null">`email`=#{email},</if>
+	            <if test="isDisabled != null">`is_disabled`=#{isDisabled},</if>
+	            <if test="isEmailVerified != null">`is_email_verified`=#{isEmailVerified},</if>
+	            <if test="isMobileNoVerified != null">`is_mobile_no_verified`=#{isMobileNoVerified},</if>
+	            <if test="mobileNo != null">`mobile_no`=#{mobileNo},</if>
+	            <if test="password != null">`passwd`=#{password},</if>
+	            <if test="salt != null">`salt`=#{salt},</if>
+	            <if test="username != null">`username`=#{username},</if>
+	            `gmt_modified` = NOW()
+	        </set>
+	        WHERE `id` = #{id} AND `is_deleted` <> 1
+        ]]>
+    </update>
+    
+    <delete id="remove" parameterType="Long">
+        <![CDATA[
+	        UPDATE `tb_user`
+	        SET `is_deleted` = 1
+	        WHERE `id` = #{id} AND `is_deleted` <> 1
+        ]]>
+    </delete>
+    
+    <insert id="addRole" useGeneratedKeys="true"  parameterType="Long">
+        INSERT INTO `tb_user_role`(`userId`, `roleId`)
+        VALUES (#{userId}, #{roleId})
+    </insert>
+    
+    <delete id="removeRole" parameterType="Long">
+        DELETE FROM `tb_user_role` WHERE `userId`=#{userId} AND `roleId`=#{roleId} 
+    </delete>
+</mapper> 

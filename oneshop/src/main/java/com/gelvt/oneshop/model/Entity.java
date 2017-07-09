@@ -14,10 +14,10 @@ public interface Entity extends Serializable{
 	/**
 	 * @return the id
 	 */
-	Integer getId();
+	Long getId();
 
 	/**
 	 * @param id the id to set
 	 */
-	void setId(Integer id);
+	void setId(Long id);
 }
