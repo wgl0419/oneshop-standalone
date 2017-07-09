@@ -44,8 +44,8 @@ CREATE TABLE `tb_user` (
   salt VARCHAR(255) COMMENT '盐',
   is_disabled TINYINT UNSIGNED DEFAULT 0 NOT NULL COMMENT '账户是否被禁用',
   reg_ip VARCHAR(255) COMMENT '帐号注册时候的ip地址',
-  gtm_create DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
-  gtm_modified DATETIME COMMENT '更新时间',
+  gmt_create DATETIME DEFAULT NOW() NOT NULL COMMENT '创建时间',
+  gmt_modified DATETIME COMMENT '更新时间',
   is_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL COMMENT '逻辑删除标志'
 );
 ALTER TABLE tb_user COMMENT = '用户表';
